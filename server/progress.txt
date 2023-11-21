@@ -1,0 +1,114 @@
+every time when i  want to add a new function
+1.server:
+1.1 routes/posts add a new router.CRUD('/', updatePost)
+1.2 controller/posts deletePost = async (req, res) => {}
+2.client
+2.1 api/index add a new api call axio.CRUD();
+2.2 actions/posts process the api call and dispatch the input or change
+2.3 reducer/posts process the api call and the detailed CRUD process
+2.4 Frontend: src/components/ revise the html form
+
+
+google signin and signout
+chrome: setting -> advanced -> clear browsing data -> cached images and files
+
+
+jwt authentication
+sign in:
+1. export home/navbar apart from the original src/App.js to src/components
+2. use browserrouter rewrite src/App.js
+3. src/components/Auth.js write the authentication function
+4. reducer/auth.js process the input payload
+5. reducer/index.js add auth in combinedReducer
+6. /components/navbar useState to add a user, useEffect to update the user in the page automatly.
+7. reducer/auth.js use localstorage to restore the input user
+
+logout:
+1. components/navbar write the logout button and function
+2. reducer/auth.js use localstorage to clear the input user
+
+sign up:
+1. components/auth/auth.js handlechange, handlesubmit and usestate to get formdata and setformdate
+2. actions/auth.js process handlesubmit detail the signin and signup case
+3. server:
+    3.1 index.js add usersroutes
+    3.2 routes/users.js add urls point to signin and signup
+    3.3 model/users.js create database user model
+    3.4 controller/user.js signin and signup logic 
+    3.5 middleware/auth.js before an action, need an auth first. 
+        wants to like a post: click the like button = auth middteware (next) => like controller
+    3.6 routes to add authenticaton before the actions
+4. client:
+    api/index.js
+
+authentication function:
+1. client
+    1.1. api/index.js send token to the backend
+    1.2. components/form.js delete the creator element in the Frontend, rewrite the handlesubmit to get the current creator
+    1.3. components/post.js to rewrite the like button
+2. server
+    2.1. controller/posts.js add auth logic
+    2.2. models/postmessage.js add the author name of a post
+
+Pagination:
+1. components/pagination.jsx , components/styles.js add pagination module
+2. components/home/home.js add pagination on the frontend
+3. clients/app.js add route to different pages
+client:5:45 - 6:00
+4. components/home.js delete useeffect, page={page}
+5. components/pagination.jsx input arg: page, useeffect, dispatch
+6. actions/posts.js getposts input arg:page
+7. api/index.js fectchposts input arg:page
+server:
+8. controller/posts.js getPosts caculate pagination
+
+
+Search:
+client:
+    1. component/home.js write the frontend
+    2. actions/posts.js write the getpostbysearch function
+    3. api/index.js write the search api index
+    4. reducer/posts add fecthbysearch case
+server:
+1. route/posts.js 
+2. controller/posts.js
+
+
+loading:
+1. action/posts.js dispatch loading
+2. reducer/posts.js loading case(redux), input arg
+3. components/posts.js
+
+
+post detail:
+client:
+1. component/post.js button navigate to post/post.id
+2. component/postdetail.jsx detail page
+3. action/posts.js getpost by id
+4. api/index.js fectchpost url
+7. reducer/posts.js case fectchpost
+server:
+5. routes/posts.js 
+6. controllers/posts.js 
+
+
+comment
+client:
+1. component/postdetail.jsx add commentsection 
+2. postdetails/commentsection.jsx 
+3. actions/posts.js commentpost
+4. api/index.js commentpost api
+server:
+1. routes/posts.js add url
+2. controllers/posts.js backend logic
+3. models/postmessage.js rewrite the database
+
+
+problems:
+1.can not resolve google sign in: 3:12-3:22
+2.In react-router-dom v6 useHistory() is replaced by useNavigate().
+You can use:
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate();
+navigate('/home');
+
